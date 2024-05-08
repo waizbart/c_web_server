@@ -3,7 +3,7 @@
 
 #pragma comment(lib, "ws2_32.lib") // Link with ws2_32.lib
 
-#define DEFAULT_PORT 8080
+#define DEFAULT_PORT 8081
 #define DEFAULT_BUFLEN 1024
 
 DWORD WINAPI handle_client(LPVOID lpParam)
@@ -21,7 +21,7 @@ DWORD WINAPI handle_client(LPVOID lpParam)
         Sleep(1000);
 
         // Enviar uma resposta simples de volta ao cliente
-        const char *response = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<html><body><h1>Hello, world! Servidor em C</h1></body></html>";
+        const char *response = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<html><body><h1>Hello, world! Servidor multi-thread em C</h1></body></html>";
         send(clientSocket, response, strlen(response), 0);
     }
 
@@ -77,7 +77,7 @@ int main()
         return 1;
     }
 
-    printf("Servidor web simples em execucao na porta %d...\n", DEFAULT_PORT);
+    printf("Servidor web multi-thread em execucao na porta %d...\n", DEFAULT_PORT);
 
     // Aceitar conexões de entrada
     while (1)
